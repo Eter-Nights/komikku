@@ -49,3 +49,7 @@ app.*.map.json
 
 # lock
 pubspec.lock
+
+# auto generate folder
+lib/rust
+rust_builder

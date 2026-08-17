@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:komikku/rust/api.dart';
+import 'package:komikku/rust/frb_generated.dart';
 
-void main() {
-  runApp(const MainApp());
+Future<void> main() async {
+  await RustLib.init();
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('flutter_rust_bridge quickstart')),
+        body: Center(
+          child: Text(
+              'Action: Call Rust `greet("Tom")`\nResult: `${greet(name: "Tom")}`'),
+        ),
+      ),
     );
   }
 }
