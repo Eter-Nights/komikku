@@ -38,7 +38,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.12.0";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1349737897;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 1124896071;
 
 // Section: executor
 
@@ -46,44 +46,822 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
-fn wire__crate__api__greet_impl(
+fn wire__crate__api__get_album_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
     data_len_: i32,
-) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
-    FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::SseCodec, _>(
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "greet",
-            port: None,
-            mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
+            debug_name: "get_album",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
         move || {
             let message = unsafe {
-                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(
-                    ptr_,
-                    rust_vec_len_,
-                    data_len_,
-                )
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
             };
-            let mut deserializer =
-                flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_name = <String>::sse_decode(&mut deserializer);
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_id = <i64>::sse_decode(&mut deserializer);
             deserializer.end();
-            transform_result_sse::<_, ()>((move || {
-                let output_ok = Result::<_, ()>::Ok(crate::api::greet(api_name))?;
-                Ok(output_ok)
-            })())
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_album(api_id).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_categories_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_categories",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_categories().await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_categories_filter_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_categories_filter",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_category = <String>::sse_decode(&mut deserializer);
+            let api_page = <i32>::sse_decode(&mut deserializer);
+            let api_sort = <crate::comic_source::jmcomic::client::CategorySort>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_categories_filter(api_category, api_page, api_sort).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_chapter_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_chapter",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_chapter_id = <i64>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_chapter(api_chapter_id).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_config_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_config",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_config().await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_cover_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_cover",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_image_name = <String>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_cover(api_image_name).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_favorite_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_favorite",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_folder_id = <i64>::sse_decode(&mut deserializer);
+            let api_page = <i32>::sse_decode(&mut deserializer);
+            let api_sort = <crate::comic_source::jmcomic::client::FavoriteSort>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_favorite(api_folder_id, api_page, api_sort).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_photo_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_photo",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_scramble_id = <i32>::sse_decode(&mut deserializer);
+            let api_chapter_id = <i32>::sse_decode(&mut deserializer);
+            let api_image_name = <String>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_photo(api_scramble_id, api_chapter_id, api_image_name).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_promote_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_promote",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_promote().await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_promote_list_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_promote_list",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_id = <i64>::sse_decode(&mut deserializer);
+            let api_page = <i32>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_promote_list(api_id, api_page).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__get_serialization_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "get_serialization",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_serial_type = <String>::sse_decode(&mut deserializer);
+            let api_date = <String>::sse_decode(&mut deserializer);
+            let api_page = <i32>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::get_serialization(api_serial_type, api_date, api_page).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__init_rust_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "init_rust",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_path = <String>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::init_rust(api_path).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__login_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "login",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_username = <String>::sse_decode(&mut deserializer);
+            let api_password = <String>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::login(api_username, api_password).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__search_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "search",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_keyword = <String>::sse_decode(&mut deserializer);
+            let api_page = <i32>::sse_decode(&mut deserializer);
+            let api_sort = <crate::comic_source::jmcomic::client::SearchSort>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::search(api_keyword, api_page, api_sort).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__toggle_favorite_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "toggle_favorite",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_album_id = <i64>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::toggle_favorite(api_album_id).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
+        },
+    )
+}
+fn wire__crate__api__update_config_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
+    rust_vec_len_: i32,
+    data_len_: i32,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::SseCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "update_config",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let message = unsafe {
+                flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
+            };
+            let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
+            let api_config = <crate::config::Config>::sse_decode(&mut deserializer);
+            deserializer.end();
+            move |context| async move {
+                transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
+                    (move || async move {
+                        let output_ok = crate::api::update_config(api_config).await?;
+                        Ok(output_ok)
+                    })()
+                    .await,
+                )
+            }
         },
     )
 }
 
 // Section: dart2rust
 
+impl SseDecode for flutter_rust_bridge::for_generated::anyhow::Error {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <String>::sse_decode(deserializer);
+        return flutter_rust_bridge::for_generated::anyhow::anyhow!("{}", inner);
+    }
+}
+
 impl SseDecode for String {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
         let mut inner = <Vec<u8>>::sse_decode(deserializer);
         return String::from_utf8(inner).unwrap();
+    }
+}
+
+impl SseDecode for crate::service::model::AlbumBriefInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_author = <String>::sse_decode(deserializer);
+        return crate::service::model::AlbumBriefInfo {
+            id: var_id,
+            name: var_name,
+            author: var_author,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::AlbumDetailInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_author = <Vec<String>>::sse_decode(deserializer);
+        let mut var_description = <String>::sse_decode(deserializer);
+        let mut var_tags = <Vec<String>>::sse_decode(deserializer);
+        let mut var_totalPhotos = <i64>::sse_decode(deserializer);
+        let mut var_addtime = <String>::sse_decode(deserializer);
+        let mut var_totalViews = <i64>::sse_decode(deserializer);
+        let mut var_likes = <i64>::sse_decode(deserializer);
+        let mut var_series = <Vec<crate::service::model::SeriesInfo>>::sse_decode(deserializer);
+        let mut var_relatedList = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        let mut var_liked = <bool>::sse_decode(deserializer);
+        let mut var_isFavorite = <bool>::sse_decode(deserializer);
+        return crate::service::model::AlbumDetailInfo {
+            id: var_id,
+            name: var_name,
+            author: var_author,
+            description: var_description,
+            tags: var_tags,
+            total_photos: var_totalPhotos,
+            addtime: var_addtime,
+            total_views: var_totalViews,
+            likes: var_likes,
+            series: var_series,
+            related_list: var_relatedList,
+            liked: var_liked,
+            is_favorite: var_isFavorite,
+        };
+    }
+}
+
+impl SseDecode for crate::comic_source::jmcomic::client::ApiDomain {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::comic_source::jmcomic::client::ApiDomain::Domain1,
+            1 => crate::comic_source::jmcomic::client::ApiDomain::Domain2,
+            2 => crate::comic_source::jmcomic::client::ApiDomain::Domain3,
+            3 => crate::comic_source::jmcomic::client::ApiDomain::Domain4,
+            4 => crate::comic_source::jmcomic::client::ApiDomain::Domain5,
+            _ => unreachable!("Invalid variant for ApiDomain: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for bool {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_u8().unwrap() != 0
+    }
+}
+
+impl SseDecode for crate::service::model::CategoryBlockInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_title = <String>::sse_decode(deserializer);
+        let mut var_content = <Vec<String>>::sse_decode(deserializer);
+        return crate::service::model::CategoryBlockInfo {
+            title: var_title,
+            content: var_content,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::CategoryInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_categories = <Vec<crate::service::model::CategoryItemInfo>>::sse_decode(deserializer);
+        let mut var_blocks = <Vec<crate::service::model::CategoryBlockInfo>>::sse_decode(deserializer);
+        return crate::service::model::CategoryInfo {
+            categories: var_categories,
+            blocks: var_blocks,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::CategoryItemInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_slug = <String>::sse_decode(deserializer);
+        let mut var_totalAlbums = <i64>::sse_decode(deserializer);
+        let mut var_subCategories = <Vec<crate::service::model::CategorySubInfo>>::sse_decode(deserializer);
+        return crate::service::model::CategoryItemInfo {
+            id: var_id,
+            name: var_name,
+            slug: var_slug,
+            total_albums: var_totalAlbums,
+            sub_categories: var_subCategories,
+        };
+    }
+}
+
+impl SseDecode for crate::comic_source::jmcomic::client::CategorySort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::comic_source::jmcomic::client::CategorySort::Latest,
+            1 => crate::comic_source::jmcomic::client::CategorySort::Like,
+            2 => crate::comic_source::jmcomic::client::CategorySort::TotalRanking,
+            3 => crate::comic_source::jmcomic::client::CategorySort::MonthRanking,
+            _ => unreachable!("Invalid variant for CategorySort: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::CategorySubInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_slug = <String>::sse_decode(deserializer);
+        return crate::service::model::CategorySubInfo {
+            id: var_id,
+            name: var_name,
+            slug: var_slug,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::ChapterInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_scrambleId = <i32>::sse_decode(deserializer);
+        let mut var_images = <Vec<String>>::sse_decode(deserializer);
+        return crate::service::model::ChapterInfo {
+            id: var_id,
+            scramble_id: var_scrambleId,
+            images: var_images,
+        };
+    }
+}
+
+impl SseDecode for crate::config::Config {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_username = <String>::sse_decode(deserializer);
+        let mut var_password = <String>::sse_decode(deserializer);
+        let mut var_apiDomain = <crate::comic_source::jmcomic::client::ApiDomain>::sse_decode(deserializer);
+        let mut var_imageDomain = <crate::comic_source::jmcomic::client::ImageDomain>::sse_decode(deserializer);
+        let mut var_proxyMode = <crate::config::ProxyMode>::sse_decode(deserializer);
+        let mut var_proxyHost = <String>::sse_decode(deserializer);
+        let mut var_proxyPort = <u16>::sse_decode(deserializer);
+        let mut var_imgConcurrency = <u32>::sse_decode(deserializer);
+        let mut var_cacheCleanupDays = <u64>::sse_decode(deserializer);
+        return crate::config::Config {
+            username: var_username,
+            password: var_password,
+            api_domain: var_apiDomain,
+            image_domain: var_imageDomain,
+            proxy_mode: var_proxyMode,
+            proxy_host: var_proxyHost,
+            proxy_port: var_proxyPort,
+            img_concurrency: var_imgConcurrency,
+            cache_cleanup_days: var_cacheCleanupDays,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::FavoriteInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_total = <i64>::sse_decode(deserializer);
+        let mut var_count = <i64>::sse_decode(deserializer);
+        let mut var_list = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        return crate::service::model::FavoriteInfo {
+            total: var_total,
+            count: var_count,
+            list: var_list,
+        };
+    }
+}
+
+impl SseDecode for crate::comic_source::jmcomic::client::FavoriteSort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::comic_source::jmcomic::client::FavoriteSort::FavoriteTime,
+            1 => crate::comic_source::jmcomic::client::FavoriteSort::UpdateTime,
+            _ => unreachable!("Invalid variant for FavoriteSort: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for i64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_i64::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for crate::comic_source::jmcomic::client::ImageDomain {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::comic_source::jmcomic::client::ImageDomain::Domain1,
+            1 => crate::comic_source::jmcomic::client::ImageDomain::Domain2,
+            2 => crate::comic_source::jmcomic::client::ImageDomain::Domain3,
+            3 => crate::comic_source::jmcomic::client::ImageDomain::Domain4,
+            4 => crate::comic_source::jmcomic::client::ImageDomain::Domain5,
+            _ => unreachable!("Invalid variant for ImageDomain: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for Vec<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<String>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::service::model::AlbumBriefInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::service::model::AlbumBriefInfo>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::service::model::CategoryBlockInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::service::model::CategoryBlockInfo>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::service::model::CategoryItemInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::service::model::CategoryItemInfo>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::service::model::CategorySubInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::service::model::CategorySubInfo>::sse_decode(deserializer));
+        }
+        return ans_;
     }
 }
 
@@ -99,6 +877,156 @@ impl SseDecode for Vec<u8> {
     }
 }
 
+impl SseDecode for Vec<crate::service::model::PromoteSectionInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::service::model::PromoteSectionInfo>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for Vec<crate::service::model::SeriesInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut len_ = <i32>::sse_decode(deserializer);
+        let mut ans_ = Vec::with_capacity(len_ as usize);
+        for idx_ in 0..len_ {
+            ans_.push(<crate::service::model::SeriesInfo>::sse_decode(deserializer));
+        }
+        return ans_;
+    }
+}
+
+impl SseDecode for crate::service::model::PromoteListInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_total = <i64>::sse_decode(deserializer);
+        let mut var_list = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        return crate::service::model::PromoteListInfo {
+            total: var_total,
+            list: var_list,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::PromoteSectionInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_title = <String>::sse_decode(deserializer);
+        let mut var_slug = <String>::sse_decode(deserializer);
+        let mut var_sectionType = <String>::sse_decode(deserializer);
+        let mut var_content = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        return crate::service::model::PromoteSectionInfo {
+            id: var_id,
+            title: var_title,
+            slug: var_slug,
+            section_type: var_sectionType,
+            content: var_content,
+        };
+    }
+}
+
+impl SseDecode for crate::config::ProxyMode {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::config::ProxyMode::System,
+            1 => crate::config::ProxyMode::NoProxy,
+            2 => crate::config::ProxyMode::Custom,
+            _ => unreachable!("Invalid variant for ProxyMode: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::SearchInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_searchQuery = <String>::sse_decode(deserializer);
+        let mut var_total = <i64>::sse_decode(deserializer);
+        let mut var_content = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        return crate::service::model::SearchInfo {
+            search_query: var_searchQuery,
+            total: var_total,
+            content: var_content,
+        };
+    }
+}
+
+impl SseDecode for crate::comic_source::jmcomic::client::SearchSort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::comic_source::jmcomic::client::SearchSort::Latest,
+            1 => crate::comic_source::jmcomic::client::SearchSort::View,
+            2 => crate::comic_source::jmcomic::client::SearchSort::Picture,
+            3 => crate::comic_source::jmcomic::client::SearchSort::Like,
+            _ => unreachable!("Invalid variant for SearchSort: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::SerializationInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_list = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        return crate::service::model::SerializationInfo { list: var_list };
+    }
+}
+
+impl SseDecode for crate::service::model::SeriesInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_id = <i64>::sse_decode(deserializer);
+        let mut var_name = <String>::sse_decode(deserializer);
+        let mut var_sort = <String>::sse_decode(deserializer);
+        return crate::service::model::SeriesInfo {
+            id: var_id,
+            name: var_name,
+            sort: var_sort,
+        };
+    }
+}
+
+impl SseDecode for crate::service::model::ToggleType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::service::model::ToggleType::Add,
+            1 => crate::service::model::ToggleType::Remove,
+            _ => unreachable!("Invalid variant for ToggleType: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for u16 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_u16::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for u32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_u32::<NativeEndian>().unwrap()
+    }
+}
+
+impl SseDecode for u64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        deserializer.cursor.read_u64::<NativeEndian>().unwrap()
+    }
+}
+
 impl SseDecode for u8 {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -111,17 +1039,31 @@ impl SseDecode for () {
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {}
 }
 
-impl SseDecode for i32 {
+impl SseDecode for crate::service::model::UserInfo {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_i32::<NativeEndian>().unwrap()
-    }
-}
-
-impl SseDecode for bool {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        deserializer.cursor.read_u8().unwrap() != 0
+        let mut var_uid = <i64>::sse_decode(deserializer);
+        let mut var_username = <String>::sse_decode(deserializer);
+        let mut var_email = <String>::sse_decode(deserializer);
+        let mut var_coin = <i64>::sse_decode(deserializer);
+        let mut var_albumFavorites = <i64>::sse_decode(deserializer);
+        let mut var_albumFavoritesMax = <i64>::sse_decode(deserializer);
+        let mut var_levelName = <String>::sse_decode(deserializer);
+        let mut var_level = <i64>::sse_decode(deserializer);
+        let mut var_nextLevelExp = <i64>::sse_decode(deserializer);
+        let mut var_exp = <i64>::sse_decode(deserializer);
+        return crate::service::model::UserInfo {
+            uid: var_uid,
+            username: var_username,
+            email: var_email,
+            coin: var_coin,
+            album_favorites: var_albumFavorites,
+            album_favorites_max: var_albumFavoritesMax,
+            level_name: var_levelName,
+            level: var_level,
+            next_level_exp: var_nextLevelExp,
+            exp: var_exp,
+        };
     }
 }
 
@@ -134,6 +1076,22 @@ fn pde_ffi_dispatcher_primary_impl(
 ) {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
+        1 => wire__crate__api__get_album_impl(port, ptr, rust_vec_len, data_len),
+        2 => wire__crate__api__get_categories_impl(port, ptr, rust_vec_len, data_len),
+        3 => wire__crate__api__get_categories_filter_impl(port, ptr, rust_vec_len, data_len),
+        4 => wire__crate__api__get_chapter_impl(port, ptr, rust_vec_len, data_len),
+        5 => wire__crate__api__get_config_impl(port, ptr, rust_vec_len, data_len),
+        6 => wire__crate__api__get_cover_impl(port, ptr, rust_vec_len, data_len),
+        7 => wire__crate__api__get_favorite_impl(port, ptr, rust_vec_len, data_len),
+        8 => wire__crate__api__get_photo_impl(port, ptr, rust_vec_len, data_len),
+        9 => wire__crate__api__get_promote_impl(port, ptr, rust_vec_len, data_len),
+        10 => wire__crate__api__get_promote_list_impl(port, ptr, rust_vec_len, data_len),
+        11 => wire__crate__api__get_serialization_impl(port, ptr, rust_vec_len, data_len),
+        12 => wire__crate__api__init_rust_impl(port, ptr, rust_vec_len, data_len),
+        13 => wire__crate__api__login_impl(port, ptr, rust_vec_len, data_len),
+        14 => wire__crate__api__search_impl(port, ptr, rust_vec_len, data_len),
+        15 => wire__crate__api__toggle_favorite_impl(port, ptr, rust_vec_len, data_len),
+        16 => wire__crate__api__update_config_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
@@ -146,17 +1104,693 @@ fn pde_ffi_dispatcher_sync_impl(
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartSse {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
-        1 => wire__crate__api__greet_impl(ptr, rust_vec_len, data_len),
         _ => unreachable!(),
     }
 }
 
 // Section: rust2dart
 
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::AlbumBriefInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.name.into_into_dart().into_dart(),
+            self.author.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::AlbumBriefInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::AlbumBriefInfo>
+    for crate::service::model::AlbumBriefInfo
+{
+    fn into_into_dart(self) -> crate::service::model::AlbumBriefInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::AlbumDetailInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.name.into_into_dart().into_dart(),
+            self.author.into_into_dart().into_dart(),
+            self.description.into_into_dart().into_dart(),
+            self.tags.into_into_dart().into_dart(),
+            self.total_photos.into_into_dart().into_dart(),
+            self.addtime.into_into_dart().into_dart(),
+            self.total_views.into_into_dart().into_dart(),
+            self.likes.into_into_dart().into_dart(),
+            self.series.into_into_dart().into_dart(),
+            self.related_list.into_into_dart().into_dart(),
+            self.liked.into_into_dart().into_dart(),
+            self.is_favorite.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::AlbumDetailInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::AlbumDetailInfo>
+    for crate::service::model::AlbumDetailInfo
+{
+    fn into_into_dart(self) -> crate::service::model::AlbumDetailInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::comic_source::jmcomic::client::ApiDomain {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Domain1 => 0.into_dart(),
+            Self::Domain2 => 1.into_dart(),
+            Self::Domain3 => 2.into_dart(),
+            Self::Domain4 => 3.into_dart(),
+            Self::Domain5 => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::comic_source::jmcomic::client::ApiDomain {}
+impl flutter_rust_bridge::IntoIntoDart<crate::comic_source::jmcomic::client::ApiDomain>
+    for crate::comic_source::jmcomic::client::ApiDomain
+{
+    fn into_into_dart(self) -> crate::comic_source::jmcomic::client::ApiDomain {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::CategoryBlockInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.title.into_into_dart().into_dart(),
+            self.content.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::CategoryBlockInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::CategoryBlockInfo>
+    for crate::service::model::CategoryBlockInfo
+{
+    fn into_into_dart(self) -> crate::service::model::CategoryBlockInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::CategoryInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.categories.into_into_dart().into_dart(),
+            self.blocks.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::CategoryInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::CategoryInfo> for crate::service::model::CategoryInfo {
+    fn into_into_dart(self) -> crate::service::model::CategoryInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::CategoryItemInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.name.into_into_dart().into_dart(),
+            self.slug.into_into_dart().into_dart(),
+            self.total_albums.into_into_dart().into_dart(),
+            self.sub_categories.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::CategoryItemInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::CategoryItemInfo>
+    for crate::service::model::CategoryItemInfo
+{
+    fn into_into_dart(self) -> crate::service::model::CategoryItemInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::comic_source::jmcomic::client::CategorySort {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Latest => 0.into_dart(),
+            Self::Like => 1.into_dart(),
+            Self::TotalRanking => 2.into_dart(),
+            Self::MonthRanking => 3.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::comic_source::jmcomic::client::CategorySort
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::comic_source::jmcomic::client::CategorySort>
+    for crate::comic_source::jmcomic::client::CategorySort
+{
+    fn into_into_dart(self) -> crate::comic_source::jmcomic::client::CategorySort {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::CategorySubInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.name.into_into_dart().into_dart(),
+            self.slug.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::CategorySubInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::CategorySubInfo>
+    for crate::service::model::CategorySubInfo
+{
+    fn into_into_dart(self) -> crate::service::model::CategorySubInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::ChapterInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.scramble_id.into_into_dart().into_dart(),
+            self.images.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::ChapterInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::ChapterInfo> for crate::service::model::ChapterInfo {
+    fn into_into_dart(self) -> crate::service::model::ChapterInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::config::Config {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.username.into_into_dart().into_dart(),
+            self.password.into_into_dart().into_dart(),
+            self.api_domain.into_into_dart().into_dart(),
+            self.image_domain.into_into_dart().into_dart(),
+            self.proxy_mode.into_into_dart().into_dart(),
+            self.proxy_host.into_into_dart().into_dart(),
+            self.proxy_port.into_into_dart().into_dart(),
+            self.img_concurrency.into_into_dart().into_dart(),
+            self.cache_cleanup_days.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::config::Config {}
+impl flutter_rust_bridge::IntoIntoDart<crate::config::Config> for crate::config::Config {
+    fn into_into_dart(self) -> crate::config::Config {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::FavoriteInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.total.into_into_dart().into_dart(),
+            self.count.into_into_dart().into_dart(),
+            self.list.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::FavoriteInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::FavoriteInfo> for crate::service::model::FavoriteInfo {
+    fn into_into_dart(self) -> crate::service::model::FavoriteInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::comic_source::jmcomic::client::FavoriteSort {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::FavoriteTime => 0.into_dart(),
+            Self::UpdateTime => 1.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::comic_source::jmcomic::client::FavoriteSort
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::comic_source::jmcomic::client::FavoriteSort>
+    for crate::comic_source::jmcomic::client::FavoriteSort
+{
+    fn into_into_dart(self) -> crate::comic_source::jmcomic::client::FavoriteSort {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::comic_source::jmcomic::client::ImageDomain {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Domain1 => 0.into_dart(),
+            Self::Domain2 => 1.into_dart(),
+            Self::Domain3 => 2.into_dart(),
+            Self::Domain4 => 3.into_dart(),
+            Self::Domain5 => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::comic_source::jmcomic::client::ImageDomain {}
+impl flutter_rust_bridge::IntoIntoDart<crate::comic_source::jmcomic::client::ImageDomain>
+    for crate::comic_source::jmcomic::client::ImageDomain
+{
+    fn into_into_dart(self) -> crate::comic_source::jmcomic::client::ImageDomain {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::PromoteListInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.total.into_into_dart().into_dart(),
+            self.list.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::PromoteListInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::PromoteListInfo>
+    for crate::service::model::PromoteListInfo
+{
+    fn into_into_dart(self) -> crate::service::model::PromoteListInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::PromoteSectionInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.title.into_into_dart().into_dart(),
+            self.slug.into_into_dart().into_dart(),
+            self.section_type.into_into_dart().into_dart(),
+            self.content.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::PromoteSectionInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::PromoteSectionInfo>
+    for crate::service::model::PromoteSectionInfo
+{
+    fn into_into_dart(self) -> crate::service::model::PromoteSectionInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::config::ProxyMode {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::System => 0.into_dart(),
+            Self::NoProxy => 1.into_dart(),
+            Self::Custom => 2.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::config::ProxyMode {}
+impl flutter_rust_bridge::IntoIntoDart<crate::config::ProxyMode> for crate::config::ProxyMode {
+    fn into_into_dart(self) -> crate::config::ProxyMode {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::SearchInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.search_query.into_into_dart().into_dart(),
+            self.total.into_into_dart().into_dart(),
+            self.content.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::SearchInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::SearchInfo> for crate::service::model::SearchInfo {
+    fn into_into_dart(self) -> crate::service::model::SearchInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::comic_source::jmcomic::client::SearchSort {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Latest => 0.into_dart(),
+            Self::View => 1.into_dart(),
+            Self::Picture => 2.into_dart(),
+            Self::Like => 3.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::comic_source::jmcomic::client::SearchSort {}
+impl flutter_rust_bridge::IntoIntoDart<crate::comic_source::jmcomic::client::SearchSort>
+    for crate::comic_source::jmcomic::client::SearchSort
+{
+    fn into_into_dart(self) -> crate::comic_source::jmcomic::client::SearchSort {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::SerializationInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [self.list.into_into_dart().into_dart()].into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::SerializationInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::SerializationInfo>
+    for crate::service::model::SerializationInfo
+{
+    fn into_into_dart(self) -> crate::service::model::SerializationInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::SeriesInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.id.into_into_dart().into_dart(),
+            self.name.into_into_dart().into_dart(),
+            self.sort.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::SeriesInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::SeriesInfo> for crate::service::model::SeriesInfo {
+    fn into_into_dart(self) -> crate::service::model::SeriesInfo {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::ToggleType {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Add => 0.into_dart(),
+            Self::Remove => 1.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::ToggleType {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::ToggleType> for crate::service::model::ToggleType {
+    fn into_into_dart(self) -> crate::service::model::ToggleType {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::service::model::UserInfo {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.uid.into_into_dart().into_dart(),
+            self.username.into_into_dart().into_dart(),
+            self.email.into_into_dart().into_dart(),
+            self.coin.into_into_dart().into_dart(),
+            self.album_favorites.into_into_dart().into_dart(),
+            self.album_favorites_max.into_into_dart().into_dart(),
+            self.level_name.into_into_dart().into_dart(),
+            self.level.into_into_dart().into_dart(),
+            self.next_level_exp.into_into_dart().into_dart(),
+            self.exp.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::service::model::UserInfo {}
+impl flutter_rust_bridge::IntoIntoDart<crate::service::model::UserInfo> for crate::service::model::UserInfo {
+    fn into_into_dart(self) -> crate::service::model::UserInfo {
+        self
+    }
+}
+
+impl SseEncode for flutter_rust_bridge::for_generated::anyhow::Error {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(format!("{:?}", self), serializer);
+    }
+}
+
 impl SseEncode for String {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <Vec<u8>>::sse_encode(self.into_bytes(), serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::AlbumBriefInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.name, serializer);
+        <String>::sse_encode(self.author, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::AlbumDetailInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.name, serializer);
+        <Vec<String>>::sse_encode(self.author, serializer);
+        <String>::sse_encode(self.description, serializer);
+        <Vec<String>>::sse_encode(self.tags, serializer);
+        <i64>::sse_encode(self.total_photos, serializer);
+        <String>::sse_encode(self.addtime, serializer);
+        <i64>::sse_encode(self.total_views, serializer);
+        <i64>::sse_encode(self.likes, serializer);
+        <Vec<crate::service::model::SeriesInfo>>::sse_encode(self.series, serializer);
+        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.related_list, serializer);
+        <bool>::sse_encode(self.liked, serializer);
+        <bool>::sse_encode(self.is_favorite, serializer);
+    }
+}
+
+impl SseEncode for crate::comic_source::jmcomic::client::ApiDomain {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::comic_source::jmcomic::client::ApiDomain::Domain1 => 0,
+                crate::comic_source::jmcomic::client::ApiDomain::Domain2 => 1,
+                crate::comic_source::jmcomic::client::ApiDomain::Domain3 => 2,
+                crate::comic_source::jmcomic::client::ApiDomain::Domain4 => 3,
+                crate::comic_source::jmcomic::client::ApiDomain::Domain5 => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for bool {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_u8(self as _).unwrap();
+    }
+}
+
+impl SseEncode for crate::service::model::CategoryBlockInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.title, serializer);
+        <Vec<String>>::sse_encode(self.content, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::CategoryInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Vec<crate::service::model::CategoryItemInfo>>::sse_encode(self.categories, serializer);
+        <Vec<crate::service::model::CategoryBlockInfo>>::sse_encode(self.blocks, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::CategoryItemInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.name, serializer);
+        <String>::sse_encode(self.slug, serializer);
+        <i64>::sse_encode(self.total_albums, serializer);
+        <Vec<crate::service::model::CategorySubInfo>>::sse_encode(self.sub_categories, serializer);
+    }
+}
+
+impl SseEncode for crate::comic_source::jmcomic::client::CategorySort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::comic_source::jmcomic::client::CategorySort::Latest => 0,
+                crate::comic_source::jmcomic::client::CategorySort::Like => 1,
+                crate::comic_source::jmcomic::client::CategorySort::TotalRanking => 2,
+                crate::comic_source::jmcomic::client::CategorySort::MonthRanking => 3,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::service::model::CategorySubInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.name, serializer);
+        <String>::sse_encode(self.slug, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::ChapterInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <i32>::sse_encode(self.scramble_id, serializer);
+        <Vec<String>>::sse_encode(self.images, serializer);
+    }
+}
+
+impl SseEncode for crate::config::Config {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.username, serializer);
+        <String>::sse_encode(self.password, serializer);
+        <crate::comic_source::jmcomic::client::ApiDomain>::sse_encode(self.api_domain, serializer);
+        <crate::comic_source::jmcomic::client::ImageDomain>::sse_encode(self.image_domain, serializer);
+        <crate::config::ProxyMode>::sse_encode(self.proxy_mode, serializer);
+        <String>::sse_encode(self.proxy_host, serializer);
+        <u16>::sse_encode(self.proxy_port, serializer);
+        <u32>::sse_encode(self.img_concurrency, serializer);
+        <u64>::sse_encode(self.cache_cleanup_days, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::FavoriteInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.total, serializer);
+        <i64>::sse_encode(self.count, serializer);
+        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.list, serializer);
+    }
+}
+
+impl SseEncode for crate::comic_source::jmcomic::client::FavoriteSort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::comic_source::jmcomic::client::FavoriteSort::FavoriteTime => 0,
+                crate::comic_source::jmcomic::client::FavoriteSort::UpdateTime => 1,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for i32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for i64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_i64::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for crate::comic_source::jmcomic::client::ImageDomain {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::comic_source::jmcomic::client::ImageDomain::Domain1 => 0,
+                crate::comic_source::jmcomic::client::ImageDomain::Domain2 => 1,
+                crate::comic_source::jmcomic::client::ImageDomain::Domain3 => 2,
+                crate::comic_source::jmcomic::client::ImageDomain::Domain4 => 3,
+                crate::comic_source::jmcomic::client::ImageDomain::Domain5 => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for Vec<String> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <String>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::service::model::AlbumBriefInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::service::model::AlbumBriefInfo>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::service::model::CategoryBlockInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::service::model::CategoryBlockInfo>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::service::model::CategoryItemInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::service::model::CategoryItemInfo>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::service::model::CategorySubInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::service::model::CategorySubInfo>::sse_encode(item, serializer);
+        }
     }
 }
 
@@ -167,6 +1801,142 @@ impl SseEncode for Vec<u8> {
         for item in self {
             <u8>::sse_encode(item, serializer);
         }
+    }
+}
+
+impl SseEncode for Vec<crate::service::model::PromoteSectionInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::service::model::PromoteSectionInfo>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for Vec<crate::service::model::SeriesInfo> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(self.len() as _, serializer);
+        for item in self {
+            <crate::service::model::SeriesInfo>::sse_encode(item, serializer);
+        }
+    }
+}
+
+impl SseEncode for crate::service::model::PromoteListInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.total, serializer);
+        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.list, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::PromoteSectionInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.title, serializer);
+        <String>::sse_encode(self.slug, serializer);
+        <String>::sse_encode(self.section_type, serializer);
+        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.content, serializer);
+    }
+}
+
+impl SseEncode for crate::config::ProxyMode {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::config::ProxyMode::System => 0,
+                crate::config::ProxyMode::NoProxy => 1,
+                crate::config::ProxyMode::Custom => 2,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::service::model::SearchInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <String>::sse_encode(self.search_query, serializer);
+        <i64>::sse_encode(self.total, serializer);
+        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.content, serializer);
+    }
+}
+
+impl SseEncode for crate::comic_source::jmcomic::client::SearchSort {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::comic_source::jmcomic::client::SearchSort::Latest => 0,
+                crate::comic_source::jmcomic::client::SearchSort::View => 1,
+                crate::comic_source::jmcomic::client::SearchSort::Picture => 2,
+                crate::comic_source::jmcomic::client::SearchSort::Like => 3,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::service::model::SerializationInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.list, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::SeriesInfo {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i64>::sse_encode(self.id, serializer);
+        <String>::sse_encode(self.name, serializer);
+        <String>::sse_encode(self.sort, serializer);
+    }
+}
+
+impl SseEncode for crate::service::model::ToggleType {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::service::model::ToggleType::Add => 0,
+                crate::service::model::ToggleType::Remove => 1,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for u16 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_u16::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for u32 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_u32::<NativeEndian>(self).unwrap();
+    }
+}
+
+impl SseEncode for u64 {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        serializer.cursor.write_u64::<NativeEndian>(self).unwrap();
     }
 }
 
@@ -182,17 +1952,19 @@ impl SseEncode for () {
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {}
 }
 
-impl SseEncode for i32 {
+impl SseEncode for crate::service::model::UserInfo {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_i32::<NativeEndian>(self).unwrap();
-    }
-}
-
-impl SseEncode for bool {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        serializer.cursor.write_u8(self as _).unwrap();
+        <i64>::sse_encode(self.uid, serializer);
+        <String>::sse_encode(self.username, serializer);
+        <String>::sse_encode(self.email, serializer);
+        <i64>::sse_encode(self.coin, serializer);
+        <i64>::sse_encode(self.album_favorites, serializer);
+        <i64>::sse_encode(self.album_favorites_max, serializer);
+        <String>::sse_encode(self.level_name, serializer);
+        <i64>::sse_encode(self.level, serializer);
+        <i64>::sse_encode(self.next_level_exp, serializer);
+        <i64>::sse_encode(self.exp, serializer);
     }
 }
 
@@ -204,9 +1976,7 @@ mod io {
     // Section: imports
 
     use super::*;
-    use flutter_rust_bridge::for_generated::byteorder::{
-        NativeEndian, ReadBytesExt, WriteBytesExt,
-    };
+    use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
     use flutter_rust_bridge::for_generated::{transform_result_dco, Lifetimeable, Lockable};
     use flutter_rust_bridge::{Handler, IntoIntoDart};
 
@@ -226,9 +1996,7 @@ mod web {
     // Section: imports
 
     use super::*;
-    use flutter_rust_bridge::for_generated::byteorder::{
-        NativeEndian, ReadBytesExt, WriteBytesExt,
-    };
+    use flutter_rust_bridge::for_generated::byteorder::{NativeEndian, ReadBytesExt, WriteBytesExt};
     use flutter_rust_bridge::for_generated::wasm_bindgen;
     use flutter_rust_bridge::for_generated::wasm_bindgen::prelude::*;
     use flutter_rust_bridge::for_generated::{transform_result_dco, Lifetimeable, Lockable};
