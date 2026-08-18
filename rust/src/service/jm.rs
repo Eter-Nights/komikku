@@ -125,21 +125,21 @@ impl JmService {
     /// 每周连载更新：type 为 all/manga/hanman，date 为 0~7（0 表示全部，1-7 表示周一到周日）（API 缓存）
     pub async fn get_serialization(
         &self,
-        serial_type: &str,
         date: &str,
+        serial_type: &str,
         page: i32,
     ) -> anyhow::Result<SerializationInfo> {
-        let key = format!("jm:serialization:{serial_type}:{date}:{page}");
-        let serial_type = serial_type.to_string();
+        let key = format!("jm:serialization:{date}:{serial_type}:{page}");
         let date = date.to_string();
+        let serial_type = serial_type.to_string();
         let json = self
             .api_cache
             .get(&key, move || {
                 let client = &self.client;
-                let serial_type = serial_type.clone();
                 let date = date.clone();
+                let serial_type = serial_type.clone();
                 async move {
-                    let resp = client.request_serialization(&serial_type, &date, page).await?;
+                    let resp = client.request_serialization(&date, &serial_type, page).await?;
                     Ok(serde_json::to_string(&SerializationInfo::from(resp))?)
                 }
             })

@@ -377,14 +377,14 @@ fn wire__crate__api__get_serialization_impl(
                 flutter_rust_bridge::for_generated::Dart2RustMessageSse::from_wire(ptr_, rust_vec_len_, data_len_)
             };
             let mut deserializer = flutter_rust_bridge::for_generated::SseDeserializer::new(message);
-            let api_serial_type = <String>::sse_decode(&mut deserializer);
             let api_date = <String>::sse_decode(&mut deserializer);
+            let api_serial_type = <String>::sse_decode(&mut deserializer);
             let api_page = <i32>::sse_decode(&mut deserializer);
             deserializer.end();
             move |context| async move {
                 transform_result_sse::<_, flutter_rust_bridge::for_generated::anyhow::Error>(
                     (move || async move {
-                        let output_ok = crate::api::get_serialization(api_serial_type, api_date, api_page).await?;
+                        let output_ok = crate::api::get_serialization(api_date, api_serial_type, api_page).await?;
                         Ok(output_ok)
                     })()
                     .await,
@@ -597,7 +597,7 @@ impl SseDecode for crate::service::model::AlbumDetailInfo {
         let mut var_totalViews = <i64>::sse_decode(deserializer);
         let mut var_likes = <i64>::sse_decode(deserializer);
         let mut var_series = <Vec<crate::service::model::SeriesInfo>>::sse_decode(deserializer);
-        let mut var_relatedList = <Vec<crate::service::model::AlbumBriefInfo>>::sse_decode(deserializer);
+        let mut var_commentTotal = <i64>::sse_decode(deserializer);
         let mut var_liked = <bool>::sse_decode(deserializer);
         let mut var_isFavorite = <bool>::sse_decode(deserializer);
         return crate::service::model::AlbumDetailInfo {
@@ -611,7 +611,7 @@ impl SseDecode for crate::service::model::AlbumDetailInfo {
             total_views: var_totalViews,
             likes: var_likes,
             series: var_series,
-            related_list: var_relatedList,
+            comment_total: var_commentTotal,
             liked: var_liked,
             is_favorite: var_isFavorite,
         };
@@ -1143,7 +1143,7 @@ impl flutter_rust_bridge::IntoDart for crate::service::model::AlbumDetailInfo {
             self.total_views.into_into_dart().into_dart(),
             self.likes.into_into_dart().into_dart(),
             self.series.into_into_dart().into_dart(),
-            self.related_list.into_into_dart().into_dart(),
+            self.comment_total.into_into_dart().into_dart(),
             self.liked.into_into_dart().into_dart(),
             self.is_favorite.into_into_dart().into_dart(),
         ]
@@ -1576,7 +1576,7 @@ impl SseEncode for crate::service::model::AlbumDetailInfo {
         <i64>::sse_encode(self.total_views, serializer);
         <i64>::sse_encode(self.likes, serializer);
         <Vec<crate::service::model::SeriesInfo>>::sse_encode(self.series, serializer);
-        <Vec<crate::service::model::AlbumBriefInfo>>::sse_encode(self.related_list, serializer);
+        <i64>::sse_encode(self.comment_total, serializer);
         <bool>::sse_encode(self.liked, serializer);
         <bool>::sse_encode(self.is_favorite, serializer);
     }

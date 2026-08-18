@@ -68,8 +68,8 @@ pub mod api {
     }
 
     /// 每周连载更新：type 为 all/manga/hanman，date 为 0~7（0 表示全部，1-7 表示周一到周日）（API 缓存）
-    pub async fn get_serialization(serial_type: String, date: String, page: i32) -> anyhow::Result<SerializationInfo> {
-        AppState::get_app()?.get_serialization(&serial_type, &date, page).await
+    pub async fn get_serialization(date: String, serial_type: String, page: i32) -> anyhow::Result<SerializationInfo> {
+        AppState::get_app()?.get_serialization(&date, &serial_type, page).await
     }
 
     /// 搜索（API 缓存）

@@ -143,11 +143,11 @@ impl AppState {
     /// 每周连载更新：type 为 all/manga/hanman，date 为 0~7（服务内部 API 缓存）
     pub async fn get_serialization(
         &self,
-        serial_type: &str,
         date: &str,
+        serial_type: &str,
         page: i32,
     ) -> anyhow::Result<SerializationInfo> {
-        self.service.get_serialization(serial_type, date, page).await
+        self.service.get_serialization(date, serial_type, page).await
     }
 
     /// 搜索（服务内部 API 缓存）

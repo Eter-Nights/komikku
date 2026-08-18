@@ -81,8 +81,8 @@ class _SerializationShowPageState extends State<SerializationShowPage> {
               unknownTotal: true,
               loadPage: (page) async {
                 final info = await getSerialization(
-                  serialType: _type,
                   date: _date,
+                  serialType: _type,
                   page: page,
                 );
                 return SearchInfo(

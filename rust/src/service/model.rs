@@ -142,7 +142,7 @@ pub struct AlbumDetailInfo {
     pub total_views: i64,
     pub likes: i64,
     pub series: Vec<SeriesInfo>,
-    pub related_list: Vec<AlbumBriefInfo>,
+    pub comment_total: i64,
     pub liked: bool,
     pub is_favorite: bool,
 }
@@ -160,7 +160,7 @@ impl From<AlbumResp> for AlbumDetailInfo {
             total_views: resp.total_views,
             likes: resp.likes,
             series: build_series(resp.id, resp.series),
-            related_list: resp.related_list.into_iter().map(AlbumBriefInfo::from).collect(),
+            comment_total: resp.comment_total,
             liked: resp.liked,
             is_favorite: resp.is_favorite,
         }
